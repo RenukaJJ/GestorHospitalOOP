@@ -27,18 +27,23 @@ namespace GestorHospital
 
         public void AddPaciente(Persona p, string histo, string dniMed)
         {
-            Medico med = (Medico)Personas.Find(r => r.DNI == dniMed);
-            if (med == null)
+            Persona persona = Personas.Find(r => r.DNI == p.DNI);
+            if (persona != null)
             {
-                Console.WriteLine("NO SE ENCONTRO MEDICO");
-                return;
+                Medico med = (Medico)Personas.Find(r => r.DNI == dniMed);
+                if (med == null)
+                {
+                    Console.WriteLine("NO SE ENCONTRO MEDICO");
+                    return;
+                }
+                else
+                {
+                    Paciente paciente = new Paciente(p.Nombre, p.Edad, p.DNI, histo, med);
+                    Personas.Add(paciente);
+                }
             }
             else
-            {
-                Paciente paciente = new Paciente(p.Nombre, p.Edad, p.DNI, histo, med);
-                Personas.Add(paciente);
-                med.AgregarPaciente(paciente);
-            }
+                Console.WriteLine("este dni ya existe");
         }
 
         public void ListarMedicos()

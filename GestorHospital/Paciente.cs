@@ -16,7 +16,8 @@ namespace GestorHospital
         {
             HistoriaClinica = historial;
             MedicoAsignado = medico;
-            FechaIngreso = DateTime.Now;           
+            FechaIngreso = DateTime.Now;
+            medico.AgregarPaciente(this);
         }
 
         public override string ToString()
