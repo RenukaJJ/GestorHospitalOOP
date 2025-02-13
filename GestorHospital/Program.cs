@@ -60,7 +60,6 @@ namespace GestorHospital
                         break;
                     case 8:
                         return;
-                        break;
                     case 9:
                         break;
                     default:
