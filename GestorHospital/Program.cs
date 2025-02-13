@@ -11,8 +11,7 @@ namespace GestorHospital
         static Hospital Hospital = new Hospital();
         static void Main(string[] args)
         {
-            Menu();
-                        
+            Menu();        
         }
 
         static void Menu()

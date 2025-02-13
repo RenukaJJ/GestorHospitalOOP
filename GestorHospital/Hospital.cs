@@ -18,7 +18,11 @@ namespace GestorHospital
 
         public void AddPersona(Persona persona)
         {
-            Personas.Add(persona);
+            Persona p = Personas.Find(r => r.DNI == persona.DNI);
+            if (p != null)
+                Personas.Add(persona);
+            else
+                Console.WriteLine("este dni ya existe");
         }
 
         public void AddPaciente(Persona p, string histo, string dniMed)
