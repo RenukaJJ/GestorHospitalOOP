@@ -12,6 +12,8 @@ namespace GestorHospital
         public string NumColegiado { get; set; }
         public List<Paciente> Pacientes { get; set; }
 
+
+
         public Medico(string nombre, int edad, string dni, string especialidad, string numColegiado) : base(nombre,edad,dni)
         {
             Especialidad = especialidad;

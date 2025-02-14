@@ -24,7 +24,8 @@ namespace GestorHospital
 5. Alta paciente
 6. Baja paciente
 7. Lista todas las personas
-8. Salir");
+8. Crear Cita
+9. Salir");
 
             while (true)
             {
@@ -33,10 +34,10 @@ namespace GestorHospital
                 switch (opt) 
                 {
                     case 1:
-                        CrearAdmin();
+                        Hospital.CrearAdmin();
                         break;
                     case 2:
-                        CrearMedico();
+                        Hospital.CrearMedico();
                         break;
                     case 3:
                         Hospital.ListarMedicos();
@@ -47,7 +48,7 @@ namespace GestorHospital
                         Hospital.ListarPacientesDeMedico(dniMedico);
                         break;
                     case 5:
-                        CrearPaciente();
+                        Hospital.CrearPaciente();
                         break;
                     case 6:
                         Console.WriteLine("Indica DNI del paciente a borrar: ");
@@ -58,63 +59,17 @@ namespace GestorHospital
                         Hospital.ListarPersonas();
                         break;
                     case 8:
-                        return;
-                    case 9:
+                        Hospital.CrearCita();
                         break;
+                    case 9:
+                        return;
                     default:
                         break;
                 }
             }
         }
 
-        static void CrearAdmin()
-        {
-            Persona p = CrearPersona();
-            Console.WriteLine("Departamento: ");
-            string departa = Console.ReadLine();
-            Console.WriteLine("Puesto: ");
-            string puesto = Console.ReadLine();
-            Administrativo admin = new Administrativo(p.Nombre, p.Edad, p.DNI, departa, puesto);
-            Hospital.AddPersona(admin);
-        }
-
-        static void CrearMedico()
-        {
-            Persona p = CrearPersona();
-            Console.WriteLine("Especialidad: ");
-            string espe = Console.ReadLine();
-            Console.WriteLine("Numero de Colegiado: ");
-            string numCole = Console.ReadLine();
-            Medico med = new Medico(p.Nombre, p.Edad, p.DNI, espe, numCole);
-            Hospital.AddPersona(med);
-        }
-
-        static void CrearPaciente()
-        {
-            Persona p = CrearPersona();
-            Console.WriteLine("Historial clinico: ");
-            string histo = Console.ReadLine();
-
-            //selecciona medico
-            Console.WriteLine("Selecciona el medico de la siguiente lista: ");
-            Hospital.ListarMedicos();
-            Console.WriteLine("Especifica DNI del medico: ");
-            string dniMed = Console.ReadLine();
-
-            Hospital.AddPaciente(p, histo, dniMed);
-        }
-
-        static Persona CrearPersona()
-        {
-            Console.WriteLine("Nombre:");
-            string nombre = Console.ReadLine();
-            int edad = ConvertStringInt("Edad: ");
-            Console.WriteLine("DNI:");
-            string dni = Console.ReadLine();
-            return new Persona(nombre, edad, dni);
-        }
-
-        static int ConvertStringInt(string pregunta) 
+        public static int ConvertStringInt(string pregunta)
         {
             while (true)
             {
